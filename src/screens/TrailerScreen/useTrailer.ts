@@ -14,12 +14,10 @@ interface Video {
 const useMovieTrailer = (movieId: number) => {
   const [trailerKey, setTrailerKey] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(true);
-  console.log('movieId', movieId);
 
   const fetchTrailer = async () => {
     try {
       const res = await movieInstance.get(`${MOVIES}/${movieId}/videos`);
-      console.log('res', res);
       const videos: Video[] = res?.data?.results;
 
       const trailer = videos.find(

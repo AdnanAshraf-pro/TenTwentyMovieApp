@@ -16,8 +16,9 @@ import useMovieSearch from './useSearch';
 import { Movie } from '../../utils/types';
 import MovieGrid from '../../components/MovieCard';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import Ionicons from '@react-native-vector-icons/ionicons';
 
-const SearchScreen: React.FC = () => {
+const SearchScreen = () => {
   const [query, setQuery] = useState<string>('');
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -49,13 +50,24 @@ const SearchScreen: React.FC = () => {
     navigation.navigate('MovieDetail', { data: movie.id });
   };
 
-  const renderItem: ListRenderItem<Movie> = ({ item }) => (
-    <MovieGrid movie={item} onMoviePress={handleOnMoviePress} />
+  const renderItem: ListRenderItem<Movie> = ({ item, index }) => (
+    <MovieGrid movie={item} onMoviePress={handleOnMoviePress} key={index} />
   );
 
   return (
     <View style={GlobalStyles.mainWrapper}>
-      <CustomHeader title="Search Movie" />
+      <CustomHeader
+        title="Search Movie"
+        left
+        leftComponent={
+          <Ionicons
+            name="arrow-back-outline"
+            size={18}
+            color={'#fff'}
+            onPress={() => navigation.goBack()}
+          />
+        }
+      />
 
       <TextInput
         style={styles.input}
@@ -95,7 +107,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 6,
     marginBottom: 10,
-    margin:10
+    margin: 10,
   },
   loading: { marginVertical: 20 },
   error: { color: 'red', marginVertical: 10 },

@@ -9,7 +9,7 @@ type TrailerPlayerRouteProp = RouteProp<
   'params'
 >;
 
-const TrailerScreen: React.FC = () => {
+const TrailerScreen = () => {
   const route = useRoute<TrailerPlayerRouteProp>();
   const { trailerKey } = route.params;
   const { goBack } = useNavigation();
@@ -24,14 +24,11 @@ const TrailerScreen: React.FC = () => {
         fullScreen
         videoId={trailerKey}
         onChangeState={state => {
-          console.log('state', state);
           if (state === 'ended') {
             goBack();
           }
         }}
         onReady={() => {
-          console.log('on ready ', playerRef);
-
           playerRef.current?.seekTo(0, true);
         }}
       />

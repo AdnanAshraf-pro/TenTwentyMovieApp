@@ -15,7 +15,7 @@ function useHome() {
 
     try {
       const data = await movieInstance.get(
-        UPCOMING_MOVIES + `?page=${pageNumber ? pageNumber : 1}`,
+        UPCOMING_MOVIES + `?adult=false&page=${pageNumber ? pageNumber : 1}`,
       );
       const newMovies = data?.data?.results;
       const totalPages = data?.data?.total_pages;

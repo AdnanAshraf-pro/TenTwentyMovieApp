@@ -1,5 +1,5 @@
 // components/CustomHeader.tsx
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -7,8 +7,8 @@ interface Props {
   title: string;
   left?: boolean;
   right?: boolean;
-  leftComponent?: boolean;
-  rightComponent?: boolean;
+  leftComponent?: ReactNode;
+  rightComponent?: ReactNode;
 }
 
 const CustomHeader = ({
@@ -23,7 +23,9 @@ const CustomHeader = ({
       <View style={styles.container}>
         <View style={styles.sideWrapper}>{left && leftComponent}</View>
         <Text style={styles.title}>{title}</Text>
-        <View style={styles.sideWrapper}>{right && rightComponent}</View>
+        <View style={[styles.sideWrapper, styles.alignRight]}>
+          {right && rightComponent}
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -49,7 +51,9 @@ const styles = StyleSheet.create({
   },
   sideWrapper: {
     width: '30%',
-    backgroundColor: '#fff',
+  },
+  alignRight: {
+    alignItems: 'flex-end',
   },
 });
 

@@ -5,6 +5,7 @@ import Home from '../screens/Home';
 import MovieDetail from '../screens/MovieDetail';
 import TrailerPlayer from '../screens/TrailerScreen';
 import SearchMovie from '../screens/SearchMovie';
+import SeatMappingScreen from '../screens/SeatMapping';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,11 @@ const MainStack = () => {
       <Stack.Screen
         name="SearchMovie"
         component={SearchMovie}
+        options={customOptions}
+      />
+      <Stack.Screen
+        name="SeatMapping"
+        component={SeatMappingScreen}
         options={customOptions}
       />
     </Stack.Navigator>
